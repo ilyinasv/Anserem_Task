@@ -77,9 +77,6 @@ namespace Anserem_Task.Repository
         {
             Selling entry = context.Sellings.Where(x => x.id == selling.SellingId && x.IsDeleted == false).FirstOrDefault();
 
-            //Contractor _conrtractor = context.Contractors.Where(x => x.id == entry.ContractorId).FirstOrDefault();
-            //SellingContact _sellingcontact = context.SellingContacts.Where(x => x.id == entry.SellingContactId).FirstOrDefault();
-
             if ( ((selling.ContractorName != null)&&(selling.ContractorName != entry.Contractor.Name)) || ((selling.ContractorContactPerson != null)&&(selling.ContractorContactPerson != entry.Contractor.ContactPerson)) )
             {
                 Contractor contractor = new Contractor { Name = selling.ContractorName, ContactPerson = selling.ContractorContactPerson };
@@ -98,6 +95,19 @@ namespace Anserem_Task.Repository
                 entry.SellingContact = sellingContact;
             };
             context.Entry(entry).State = EntityState.Modified;
+        }
+
+        public void CopySelling(int id)
+        {
+            SellingViewModel selling = context.Sellings.Where(x => x.id == id && x.IsDeleted == false).Select(x => new SellingViewModel
+            {
+                Name = x.Name,
+                SellingContact = x.SellingContact.ContactPerson,
+                ContractorName = x.Contractor.Name,
+                ContractorContactPerson = x.Contractor.ContactPerson,
+                ContractorCity = x.Contractor.City.Name
+            }).FirstOrDefault();
+            CreateSelling(selling);
         }
 
         public void Save()

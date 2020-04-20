@@ -18,7 +18,7 @@ function loadData() {
                 html += '<td>' + item.ContractorName + '</td>';
                 html += '<td>' + item.ContractorContactPerson + '</td>';
                 html += '<td>' + item.ContractorCity + '</td>';
-                html += '<td><a href="#" onclick="return getbyID(' + item.SellingId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.SellingId + ')">Delete</a></td>';
+                html += '<td><a href="#" onclick="return getbyID(' + item.SellingId + ')">Edit</a> | <a href="#" onclick="Delele(' + item.SellingId + ')">Delete</a> | <a href="#" onclick="Copy(' + item.SellingId + ')">Copy</a></td>';
                 html += '</tr>';
             });
             $('.tbody').html(html);
@@ -52,6 +52,22 @@ function Add() {
             alert(errormessage.responseText);
         }
     });
+}
+
+function Copy(ID) {
+    $.ajax({
+        url: "/Home/Copy/" + ID,
+        type: "POST",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+            loadData();
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+
 }
 
 function getbyID(ID) {

@@ -47,5 +47,11 @@ namespace Anserem_Task.Controllers
             sellingRepository.Save();
             return Json(-1, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult Copy(int ID)
+        {
+            sellingRepository.CopySelling(ID);
+            sellingRepository.Save();
+            return Json(-1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

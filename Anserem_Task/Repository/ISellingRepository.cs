@@ -14,6 +14,7 @@ namespace Anserem_Task.Repository
         void CreateSelling(SellingViewModel selling);
         void DeleteSelling(int id);
         void UpdateSelling(SellingViewModel selling);
+        void CopySelling(int id);
         void Save();
     }
 }
