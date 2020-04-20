@@ -1,0 +1,74 @@
+﻿@model Anserem_Task.Models.SellingViewModel
+@{
+    Layout = null;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/selling.js"></script>
+
+
+<div class="container" style="margin-top:3%">
+    <h2>Продажи</h2>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Добавить новую продажу</button><br /><br />
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название продажи</th>
+                <th>Ответственный за продажу</th>
+                <th>Клиент-организация</th>
+                <th>Контактное лицо от организации</th>
+                <th>Город клиента-организации</th>
+                <th>Опции</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Продажа</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Name">Название продажи</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="SellingContact">Ответственный за продажу</label>
+                        <input type="text" class="form-control" id="SellingContact" placeholder="SellingContact" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ContractorName">Клиент-организация</label>
+                        <input type="text" class="form-control" id="ContractorName" placeholder="ContractorName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ContractorContactPerson">Контактное лицо от организации</label>
+                        <input type="text" class="form-control" id="ContractorContactPerson" placeholder="ContractorContactPerson" />
+                    </div>
+                    <div class="form-group">
+                        <label for="ContractorCity">Город клиента-организации</label>
+                        <input type="text" class="form-control" id="ContractorCity" placeholder="ContractorCity" />
+                    </div>
+                    <div class="form-group" hidden>
+                        <label for="SellingId">SellingId</label>
+                        <input type="text" class="form-control" id="SellingId"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
